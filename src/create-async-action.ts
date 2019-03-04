@@ -47,7 +47,7 @@ const createAsyncActionCreator = <S>(
   fn: Function,
   metaCreator?: (...args: any[]) => any
 ) => {
-  let actions = createAsyncActions(`${!isEmpty(moduleId) ? moduleId.concat(`/${type}`) : type}`);
+  let actions = createAsyncActions(`${!isNil(moduleId) ? moduleId.concat(`/${type}`) : type}`);
 
   const finalMetaCreator = (mc: any) => (isNil(mc) ? undefined : (...args: any[]) => mc(...drop(1, args)));
   const actionCreators = {

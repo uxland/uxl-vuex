@@ -70,7 +70,7 @@ const nop = (state: any) => state;
 
 export const createAsyncMutation = <T>(type: string, moduleId: string, options: Options<T> = {}) => {
   const initialValue = isNil(options.defValue) ? { ...defaultState } : { ...defaultState, state: options.defValue };
-  let actions = createAsyncActions(`${!isEmpty(moduleId) ? moduleId.concat(`/${type}`) : type}`);
+  let actions = createAsyncActions(`${!isNil(moduleId) ? moduleId.concat(`/${type}`) : type}`);
   const setterFactory = (...pipes: PropertySetter[]) => piper(...pipes, setTimestampFactory(options));
   const setters = <any>{
     [actions.started]: setter(options, initialValueSetter(setterFactory(setIsFetching), initialValue)),
