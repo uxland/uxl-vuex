@@ -1,8 +1,24 @@
 import { addDays, addHours, addMinutes, addSeconds, isBefore, isValid } from "date-fns/esm";
 import { getDefaultState } from "./create-async-mutation";
-import { AsyncState, Duration } from "state";
 import isNil from "ramda/es/isNil";
 import equals from "ramda/es/equals";
+
+export interface AsyncState<TState = any> {
+  isFetching: boolean;
+  error?: boolean;
+  errorDescription?: string;
+  exceptions?: any;
+  state?: TState;
+  didInvalidate?: boolean;
+  timestamp?: Date;
+  elapsed?: number;
+}
+
+export type DurationUnitType = "seconds" | "minutes" | "hours" | "days";
+export interface Duration {
+  amount: number;
+  unit: DurationUnitType;
+}
 
 const defaultState = getDefaultState();
 const durationAdders = {

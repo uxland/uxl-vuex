@@ -1,11 +1,11 @@
 import { createAsyncActions } from "./create-async-actions";
-import { Action } from "state";
 import is from "ramda/es/is";
 import isNil from "ramda/es/isNil";
 import isEmpty from "ramda/es/isEmpty";
 import identity from "ramda/es/identity";
 import drop from "ramda/es/drop";
 import { Store } from "vuex";
+import { Action } from "./create-action";
 
 const invariant = (condition: boolean, message: string) => {
   if (!condition) throw new Error(message);

@@ -1,4 +1,10 @@
-import { AsyncActions } from "state";
+export interface AsyncActions {
+  started: string;
+  failed: string;
+  succeeded: string;
+  ended: string;
+  invalidated: string;
+}
 
 export const ENDED_SUFFIX = "_ENDED";
 export const FAILED_SUFFIX = "_FAILED";

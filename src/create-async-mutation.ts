@@ -1,11 +1,22 @@
-import { resolvePath } from "./path-resolver";
+import { resolvePath, PathResolver } from "./path-resolver";
 import { createAsyncActions } from "./create-async-actions";
 import { get, set } from "dot-prop-immutable";
-import { AsyncState, Action, Options } from "state";
 import is from "ramda/es/is";
 import isEmpty from "ramda/es/isEmpty";
 import values from "ramda/es/values";
 import isNil from "ramda/es/isNil";
+import { AsyncState } from "./is-async-stale";
+import { Action } from "./create-action";
+
+export interface BasicOptions<T = any> {
+  defValue?: T;
+  path?: string | PathResolver;
+}
+export interface Options<T = any> extends BasicOptions<T> {
+  timestampAccessor?: (action: Action) => Date;
+  payloadAccessor?: (action: Action) => T;
+  pathResolver?: string | PathResolver;
+}
 
 const defaultState: AsyncState = {
   error: false,

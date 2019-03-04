@@ -1,7 +1,14 @@
-import { Action } from "state";
 import isNil from "ramda/es/isNil";
 import is from "ramda/es/is";
 import identity from "ramda/es/identity";
+
+export interface Action<Payload = any, Meta = any> {
+  type?: any;
+  payload?: Payload;
+  meta?: Meta;
+  error?: boolean;
+  timestamp?: Date;
+}
 
 const invariant = (condition: boolean, message: string) => {
   if (!condition) throw new Error(message);
